@@ -15,6 +15,7 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
+        return view('empleado.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class EmpleadoController extends Controller
     public function create()
     {
         //
+        return view('empleado.create');
     }
 
     /**
@@ -35,7 +37,17 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$datosEmpleado=request()->all();
+        //recolecta todos los datos del formulario
+        //que te envien atravez del formulario
+        //quitale lo que es la llave en este caso el toekn
+        $datosEmpleado=request()->except('_token');
+        if($request->hasFile('Foto')){
+            $datosEmpleado['Foto']=$request->file('Foto')->store('uploads','public');
+        }
+        //agarra el modelo e inserta los datos
+        Empleado::insert($datosEmpleado);
+        return response()->json($datosEmpleado);
     }
 
     /**

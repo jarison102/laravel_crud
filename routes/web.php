@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmpleadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+/*
+Route::get('/empleado', function () {
+    return view('empleado.index');
+});
+
+Route::get('/empleado/create',[EmpleadoController::class,'create']);
+*/
+//con esta intrucion se puede acceder atodas las urls que estan en empleado controller
+Route::resource('empleado',EmpleadoController::class);

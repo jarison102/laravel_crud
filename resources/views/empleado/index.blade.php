@@ -1,3 +1,13 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+
+@if(Session::has('mensaje'))
+{{Session::get('mensaje')}}
+@endif
+<a href="{{url('empleado/create')}}" class="btn btn-success">Registrar Nuevo Empleado</a>
+
 <div class="table-responsive">
     <table class="table table-primary">
         <thead>
@@ -17,7 +27,7 @@
                 <td scope="row">{{$empleado->id}}</td>
 
                 <td scope="row">
-                    <img src="{{asset('storage').'/'.$empleado->Foto}}" alt=""  width="100">
+                    <img class ="img-thumbnail img-fluid" src="{{asset('storage').'/'.$empleado->Foto}}" alt=""  width="100">
                 </td>
 
                 <td scope="row">{{$empleado->Nombre}}</td>
@@ -26,17 +36,17 @@
                 <td scope="row">{{$empleado->Correo}}</td>
                 <td scope="row">
                     
-                <a href="{{url('/empleado/'.$empleado->id.'/edit')}}">
+                <a href="{{url('/empleado/'.$empleado->id.'/edit')}}" class="btn btn-warning">
 
                 Editar 
                 </a>
                 
 
 
-                <form action="{{url('/empleado/'.$empleado->id)}}" method="post" >
+                <form action="{{url('/empleado/'.$empleado->id)}}"  class="d-inline" method="post" >
                     @csrf
                     {{method_field('DELETE')}}
-                <input type="submit" onclick="return confirm('Quieres borrar encerio?')"value="Borrar">
+                <input type="submit" onclick="return confirm('Quieres borrar encerio?')"value="Borrar" class="btn btn-danger">
                 </form>
                 </td>
             </tr>
@@ -44,3 +54,6 @@
         </tbody>
     </table>
 </div>
+</div>
+@endsection
+

@@ -4,8 +4,12 @@
 <div class="container">
 
 @if(Session::has('mensaje'))
+<div class="alert alert-success alert-dismissible" role="alert">
 {{Session::get('mensaje')}}
+</div>
 @endif
+
+
 <a href="{{url('empleado/create')}}" class="btn btn-success">Registrar Nuevo Empleado</a>
 
 <div class="table-responsive">
@@ -53,6 +57,7 @@
             @endforeach
         </tbody>
     </table>
+    {!! $empleados->links() !!}
 </div>
 </div>
 @endsection
